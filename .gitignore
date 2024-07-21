@@ -1,0 +1,46 @@
+# Общие игнорируемые файлы и каталоги
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+
+# Виртуальная среда (если используется venv)
+venv/
+env/
+.env/
+.venv/
+
+# PyCharm IDE
+.idea/
+
+# VS Code
+.vscode/
+
+# Пакеты
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Секретные файлы
+*.env
+
+# Файлы сборки
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Система управления зависимостями
+Pipfile.lock
+poetry.lock
+
+# библиотеки
+modules/
+
+# Массивы с данными
+data/
