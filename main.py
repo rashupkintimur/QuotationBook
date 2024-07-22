@@ -8,13 +8,12 @@ bot = telebot.TeleBot(config.API_TOKEN)
 
 # вспомогательные переменные
 lang = None
-response = None
 url = "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang="
 
 # Обработчик /start команды
 @bot.message_handler(commands=["start"])
 def welcome(message):
-	# создаём инлайн-кнопки
+	# создаём клавиатуру
 	markup = types.ReplyKeyboardMarkup(row_width=2)
 	button_en_lang = types.KeyboardButton("🇬🇧English")
 	button_ru_lang = types.KeyboardButton("🇷🇺Русский")
@@ -40,9 +39,12 @@ def send_quote(message):
 	response = requests.get(url + lang)
 
 	if response.status_code == 200:
-		quoteObj = response.json()
+		try:
+			quoteObj = response.json()
 
-		bot.send_message(message.chat.id, f"<i>{quoteObj["quoteText"]}</i>\n\n<b>{quoteObj["quoteAuthor"]}</b>", parse_mode="HTML")
+			bot.send_message(message.chat.id, f"<i>{quoteObj["quoteText"]}</i>\n\n<b>{quoteObj["quoteAuthor"]}</b>", parse_mode="HTML")
+		except ValueError:
+			bot.send_message(message.chat.id, "Ошибка при обработке ответа от сервера")
 	else:
 		print(f"Ошибка: {response.status_code}")
 
