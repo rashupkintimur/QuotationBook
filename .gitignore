@@ -42,5 +42,8 @@ poetry.lock
 # библиотеки
 modules/
 
+# конфиги
+config.py
+
 # Массивы с данными
 data/
